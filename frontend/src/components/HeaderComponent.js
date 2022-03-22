@@ -48,19 +48,19 @@ class Header extends Component {
             <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
                <li><a class="nav-link scrollto " href="home">Home</a></li>
-               <li><a class="nav-link scrollto" href="#about">About Us</a></li>
-               <li><a class="nav-link scrollto" href="#services">Services</a></li>
+               <li><a class="nav-link scrollto" href="home#about">About Us</a></li>
+               <li><a class="nav-link scrollto" href="home#services">Services</a></li>
                <li><a class="nav-link scrollto" href="doctors">Doctors</a></li>
-               <li><a class="nav-link scrollto" href="#Pharmacy">Pharmacy</a></li>
-               <li><a class="nav-link scrollto" href="#Patients">Patients</a></li>
+               <li><a class="nav-link scrollto" href="Pharmacy">Pharmacy</a></li>
+               <li><a class="nav-link scrollto" href="Patients">Patients</a></li>
                
-               <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+               <li><a class="nav-link scrollto" href="home#contact">Contact</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
 
-            <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>
-            <a href="#login" className="login-btn"><span class="d-none d-md-inline"></span> Login</a>
+            <a href="appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>
+            <a href="login" className="login-btn"><span class="d-none d-md-inline"></span> Login</a>
          </div>
       </header>
       </div>
