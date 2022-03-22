@@ -2,7 +2,7 @@ import React from "react";
 import CountUp from 'react-countup'
 import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import { Map, GoogleApiWrapper } from 'google-maps-react';
 
 import "./assets/css/style.css";
 import "./assets/js/main.js";
@@ -406,6 +406,58 @@ function Home(props) {
           </div>  
         </div>
       </section>
+
+      {/* <!-- ======= Contact Section ======= --> */}
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Contact</h2>
+          </div>
+
+      </div>
+
+      <div>
+        {/* <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105812.00447069069!2d79.800453304301!3d6.919638307047106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae253d10f7a7003%3A0x320b2e4d32d3838d!2sColombo!5e0!3m2!1sen!2slk!4v1646499279751!5m2!1sen!2slk" frameborder="0" allowfullscreen></iframe> */}
+        {/* <iframe src="" width="400" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe> */}
+      </div>
+
+      <div class="container">
+
+        <div class="row mt-5">
+
+          <div class="col-lg-12">
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="info-box">
+                  <i class="bx bx-map"></i>
+                  <h3>Our Address</h3>
+                  <p>A108 Adam Street, NY, Colombo, Sri Lanka</p>                  
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="info-box mt-4">
+                  <i class="bx bx-envelope"></i>
+                  <h3>Email Us</h3>
+                  <p>lifecare@gmail.com<br/>contact@lifecare.com</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="info-box mt-4">
+                  <i class="bx bx-phone-call"></i>
+                  <h3>Call Us</h3>
+                  <p>+94 12 123 1234<br/>+94 12 123 4567</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+    {/* <!-- End Contact Section --> */}
     </div>
 
 
