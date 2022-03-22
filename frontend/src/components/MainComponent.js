@@ -3,7 +3,7 @@ import Home from "./HomeComponent";
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
 import DocterCom from "./DocterCom";
-import PharmacyComponent from "./PharmacyComponent";
+import PharmacyComponent from "./Pharmacy/PharmacyComponent";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 
