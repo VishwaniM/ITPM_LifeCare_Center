@@ -4,6 +4,7 @@ import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
 import DocterCom from "./DocterCom";
 import PharmacyComponent from "./Pharmacy/PharmacyComponent";
+import PatientsComponent from "./Patients/PatientsComponent"
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 
@@ -26,7 +27,7 @@ class Main extends Component {
 
           <Route path="/doctors" exact component={() => <Redirect to="/doctors"/>}><DocterCom /></Route>
           <Route path="/pharmacy" exact component={() => <Redirect to="/pharmacy"/>}><PharmacyComponent /></Route>  
-          
+          <Route path="/patients" exact component={() => <Redirect to="/patients"/>}><PatientsComponent /></Route>  
           <Redirect to="/home" />
         </Switch>
         <Footer />
