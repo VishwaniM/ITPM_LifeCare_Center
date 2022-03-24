@@ -10024,6 +10024,11 @@
   "resolved" "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.15.1.tgz"
   "version" "7.15.1"
 
+"react-hook-google-maps@^0.0.3":
+  "integrity" "sha512-ZgsFaKXOX/sTWBMlbgdvfRp6PAp1WYT3XYyJf1nplOwnoBfd81vqQoeLnM005q0tQaxq6/M5ymKuFUWrpFxJgQ=="
+  "resolved" "https://registry.npmjs.org/react-hook-google-maps/-/react-hook-google-maps-0.0.3.tgz"
+  "version" "0.0.3"
+
 "react-interactive@^0.8.1":
   "integrity" "sha512-mmRvA9aKP7zu9kVfP1AX1egX8tFlnE3DDXq92z0JTZezfOpmeQBzr77O1+mTV54OOmn+M2t6c5kFD5VnuFoM7A=="
   "resolved" "https://registry.npmjs.org/react-interactive/-/react-interactive-0.8.3.tgz"
