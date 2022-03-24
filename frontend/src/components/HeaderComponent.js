@@ -51,15 +51,15 @@ class Header extends Component {
                <li><a class="nav-link scrollto" href="home#about">About Us</a></li>
                <li><a class="nav-link scrollto" href="home#services">Services</a></li>
                <li><a class="nav-link scrollto" href="doctors">Doctors</a></li>
-               <li><a class="nav-link scrollto" href="Pharmacy">Pharmacy</a></li>
-               <li><a class="nav-link scrollto" href="Patients">Patients</a></li>
+               <li><a class="nav-link scrollto" href="pharmacy">Pharmacy</a></li>
+               <li><a class="nav-link scrollto" href="patients">Patients</a></li>
                
                <li><a class="nav-link scrollto" href="home#contact">Contact</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
 
-            <a href="appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>
+            <a href="appointments" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointments</a>
             <a href="login" className="login-btn"><span class="d-none d-md-inline"></span> Login</a>
          </div>
       </header>
