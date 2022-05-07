@@ -27,8 +27,7 @@ class Main extends Component {
 
           <Route path="/doctors/search" exact component = {DoctorCom}/>
           <Route path="/doctorsdetails/search" exact component = {DoctorView}/>
-          <Route path="/doctors" exact component={() => <Redirect to="/doctors"/>}><DoctorCom/></Route>
-          <Route path="/doctorsdetails" exact component={() => <Redirect to="/doctorsdetails"/>}><DoctorView/></Route> 
+         
          
           <Redirect to="/home" />
         </Switch>
