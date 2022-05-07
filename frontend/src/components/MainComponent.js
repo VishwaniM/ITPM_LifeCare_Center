@@ -26,7 +26,12 @@ class Main extends Component {
           <Route path="/" exact component={() => <Redirect to="/home" />} />
 
           
-          
+          <Route path="/home" component={HomePage} /> 
+
+          <Route path="/doctors/search" exact component = {DoctorCom}/>
+          <Route path="/doctorsdetails/search" exact component = {DoctorView}/>
+          <Route path="/doctors" exact component={() => <Redirect to="/doctors"/>}><DoctorCom/></Route>
+          <Route path="/doctorsdetails" exact component={() => <Redirect to="/doctorsdetails"/>}><DoctorView/></Route>
           <Route path="/pharmacy" exact component={() => <Redirect to="/pharmacy"/>}><PharmacyComponent /></Route>  
           <Route path="/patients" exact component={() => <Redirect to="/patients"/>}><PatientsComponent /></Route>  
           <Route path="/appointments" exact component={() => <Redirect to="/appointments"/>}><AppointmentsComponent /></Route> 
