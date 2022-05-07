@@ -15,7 +15,7 @@ import LOGO from './assets/img/logo.png'
 function Footer(props) {
   return (
    
-   <footer id="footer">
+   <footer id="footer" style={{marginTop: '50px'}}>
    
       
    
