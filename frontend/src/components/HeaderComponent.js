@@ -51,6 +51,7 @@ class Header extends Component {
                <li><a class="nav-link scrollto" href="home#about">About Us</a></li>
                <li><a class="nav-link scrollto" href="home#services">Services</a></li>
                <li><a class="nav-link scrollto" href="doctors">Doctors</a></li>
+               <li><a class="nav-link scrollto" href="doctorsdetails">Doctors View</a></li>
                <li><a class="nav-link scrollto" href="pharmacy">Pharmacy</a></li>
                <li><a class="nav-link scrollto" href="patients">Patients</a></li>
                
