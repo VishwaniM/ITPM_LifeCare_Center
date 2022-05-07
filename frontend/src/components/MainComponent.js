@@ -22,16 +22,16 @@ class Main extends Component {
 
           <Route path="/" exact component={() => <Redirect to="/home" />} />
 
-          
           <Route path="/home" component={HomePage} /> 
 
           <Route path="/doctors/search" exact component = {DoctorCom}/>
           <Route path="/doctorsdetails/search" exact component = {DoctorView}/>
-         
-         
+          <Route path="/doctors" exact component={() => <Redirect to="/doctors"/>}><DoctorCom/></Route>
+          <Route path="/doctorsdetails" exact component={() => <Redirect to="/doctorsdetails"/>}><DoctorView/></Route>  
+          
           <Redirect to="/home" />
         </Switch>
-        <Footer />
+        <Footer/>
         </BrowserRouter>
       </div>
     );
