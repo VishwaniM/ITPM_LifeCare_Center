@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+
+    background-repeat: no-repeat;
+
+    background-attachment: fixed;
+
+    background-image: url("https://wallpaper.dog/large/20356387.jpg");
+
+    background-size: cover;
+
+  }
