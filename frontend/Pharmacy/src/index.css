@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+
+    background-repeat: no-repeat;
+
+    background-attachment: fixed;
+
+    background-image: url("https://www.google.com/search?q=background&sxsrf=APq-WBsAnDiUSb8N2GGGznG_gjouo3kzuQ:1650116964462&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiftoTc3Jj3AhXbxjgGHTBcC-kQ_AUoAXoECAEQAw&biw=1536&bih=754&dpr=1.25#imgrc=x-lvRKo4RLNHJM");
+
+    background-size: cover;
+
+  }

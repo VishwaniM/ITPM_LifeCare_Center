@@ -1,0 +1,19 @@
+.input-box { 
+  position: relative; 
+}
+
+inputt { 
+  display: block; 
+  border: 1px solid #d7d6d6; 
+  background: #fff; 
+  padding: 10px 10px 10px 20px; 
+  width: 400px; 
+}
+
+.unit { 
+  position: absolute; 
+  display: block; 
+  left: 40px; 
+  top: 75px; 
+  z-index: 100; 
+}
