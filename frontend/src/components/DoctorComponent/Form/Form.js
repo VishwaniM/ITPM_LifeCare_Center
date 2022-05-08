@@ -55,7 +55,7 @@ const Form = ({ currentId, setCurrentId }) => {
                     </Grid>
 
                     <Grid item xs={12} >
-                        <TextField required type='tel' name="Age" inputProps={{ maxLength: 2, pattern: '[0-9]{2}'}} variant="standard" label="Doctor Age" fullWidth value={doctorData.age} onChange={(e) => setDoctorData({ ...doctorData, age: e.target.value })} />
+                        <TextField required type='tel' name="Age" inputProps={{ maxLength: 2, pattern: '[0-9]{2}', title:" Ex. 24"}} variant="standard" label="Doctor Age (Format: XX)" fullWidth value={doctorData.age} onChange={(e) => setDoctorData({ ...doctorData, age: e.target.value })} />
                     </Grid>
 
                     <Grid item xs={12}>
