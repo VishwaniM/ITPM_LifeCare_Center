@@ -2,7 +2,9 @@ import React from 'react';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import Box from "@mui/material/Box";
 import GetAppIcon from '@material-ui/icons/GetApp';
+import Modal from "@mui/material/Modal";
 import { useDispatch } from 'react-redux';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
@@ -46,7 +48,8 @@ const Doctor = ({ doctor, setCurrentId }) => {
             startY:320,
             margin:50,
             columnStyles: { 1: { halign: 'right' } },
-            head:[['','Doctor Details']],
+            headStyles:{halign:'left'},
+            head:[['','']],
             body:[
                 ['Full Name',[doctor.fullName]],
                 ['Age',[doctor.age]],
@@ -55,11 +58,20 @@ const Doctor = ({ doctor, setCurrentId }) => {
                 ['SLMC Number'  , [doctor.slmcNo]],
                 ['Doctor Speciality'  ,[doctor.speciality]],
                 ['Email'  , [doctor.email]],
-                ['Phone Number'  ,'0'+ [doctor.phoneNumber]],
+                ['Phone Number'  , [doctor.phoneNumber]],
                 ['Current Working Hospital'  , [doctor.hospital]],
                 
             ],
         })
+
+        doc.autoTable({
+            startY:320,
+            margin:50,
+            columnStyles: { 1: { halign: 'right' } },
+            headStyles:{halign:'center'},
+            head:[['Doctor Details']],           
+        })
+
         doc.autoTable({
             startY:560,
             margin:50,
@@ -74,6 +86,22 @@ const Doctor = ({ doctor, setCurrentId }) => {
         })
         doc.save('Report.pdf');
     }
+
+    const style = {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: 400,
+        bgcolor: "background.paper",
+        border: "2px solid #000",
+        boxShadow: 24,
+        p: 4
+      };     
+     
+        const [open, setOpen] = React.useState(false);
+        const handleOpen = () => setOpen(true);
+        const handleClose = () => setOpen(false);
     
     return(
        <Card className={classes.card }raised elevation = {6}>
@@ -150,12 +178,33 @@ const Doctor = ({ doctor, setCurrentId }) => {
                         Edit
                         
                     </Button>
-                    <Button size="small" color="secondary" onClick={() => dispatch(deleteDoctor(doctor._id))}>
+                    <Button size="small" color="secondary" onClick={handleOpen}>
                         <DeleteIcon fontSize="small"/>
                         Delete
                     </Button>
 
                 </CardActions>
+
+                <div>
+      
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2" style={{marginBottom:'10px' }}>
+            Are you sure ?
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }} style={{marginBottom:'10px' }}>
+              Are you sure you want to delete this doctor ?
+          </Typography>
+          <Button style={{marginLeft:'160px' }} onClick={handleClose}>Cancel</Button>
+          <Button style={{color:'red',marginLeft:'20px'}} onClick={() => dispatch(deleteDoctor(doctor._id))}>Delete</Button>
+        </Box>
+      </Modal>
+    </div>
 
        </Card>
     );
