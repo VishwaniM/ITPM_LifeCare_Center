@@ -1,38 +1,38 @@
 const router=require("express").Router();
 let feeDet=require("../models/PaymentDetails");
 
-//http://localhost:8090/PaymentDetails/add this is the use of route method
+//http://localhost:8090/feeDetails/add this is the use of route method
 router.route("/add").post((req,res)=>{
 
-    const PaymentID=req.body.PaymentID;
+    const PatientID=req.body.PatientID;
     const Patientname=req.body.Patientname;
     const Phoneno=Number(req.body.Phoneno);
     const Email=req.body.Email;
-    const Doctor=req.body.Doctor;
+    const Province=req.body.Province;
     const Sex=req.body.Sex;
-    const PaymentDate=req.body.PaymentDate;
-    const PaymentType=req.body.PaymentType;
-    const Amount=req.body.Amount;
+    const Birthday=req.body.Birthday;
+    const BloodType=req.body.BloodType;
+    const Phistory=req.body.Phistory;
    
 
- //console.log(PaymentID,Patientname,Phoneno,Email,Amount)
+ //console.log(PatientID,Patientname,Phoneno,Email,Phistory)
 
-    const newPaymentDetails=new feeDet({
-        PaymentID,
+    const newFeeDetails=new feeDet({
+        PatientID,
         Patientname,
         Phoneno,
         Email,
-        Doctor,
+        Province,
         Sex,
-        PaymentDate,
-        PaymentType,
-        Amount
+        Birthday,
+        BloodType,
+        Phistory
        
     })
 
     //cheching if added or not
-    newPaymentDetails.save().then(()=>{
-        res.json("Payment addedd")
+    newFeeDetails.save().then(()=>{
+        res.json("Student addedd")
     }).catch((err)=>{
         console.log(err.message);
     })
@@ -42,8 +42,8 @@ router.route("/add").post((req,res)=>{
 //data retrieving
 router.route("/").get((req,res)=>{
     //using .find() method we get all the results in the table
-    feeDet.find().then((PaymentDetails)=>{
-        res.json(PaymentDetails)
+    feeDet.find().then((feeDetail)=>{
+        res.json(feeDetail)
     }).catch((err)=>{
         console.log(err);
     })
@@ -57,22 +57,22 @@ router.route("/update/:id").put(async (req,res)=>{
 
     //assigning values
     //destructure method used
-    const{PaymentID,Patientname,Phoneno,Email,Doctor,Sex,PaymentDate,PaymentType,Amount}=req.body;
+    const{PatientID,Patientname,Phoneno,Email,Province,Sex,Birthday,BloodType,Phistory}=req.body;
 
-    const updatePaymentDetails={
-        PaymentID,
+    const updateFeeDetails={
+        PatientID,
         Patientname,
         Phoneno,
         Email,
-        Doctor,
+        Province,
         Sex,
-        PaymentDate,
-        PaymentType,
-        Amount
+        Birthday,
+        BloodType,
+        Phistory
     
     }
-    //also we can use (userId,{PaymentID,name,Phoneno,Email,Amount})
-    const update=await feeDet.findByIdAndUpdate(userId,updatePaymentDetails)
+    //also we can use (userId,{PatientID,name,Phoneno,Email,Phistory})
+    const update=await feeDet.findByIdAndUpdate(userId,updateFeeDetails)
     .then(()=>{
         //res.status() means like error code given 404
         res.status(200).send({status:"Details updated"})
@@ -105,8 +105,8 @@ router.route("/get/:id").get(async (req,res)=>{
     let userId=req.params.id;
 
     const user=await feeDet.findById(userId)
-    .then((PaymentDetails)=>{
-        res.status(200).send({status:"User fetched", PaymentDetails})
+    .then((FeeDetails)=>{
+        res.status(200).send({status:"User fetched", FeeDetails})
     }).catch((err)=>{
         console.log(err);
         res.status(500).send({status:"error with get user", error:err.message});
@@ -116,7 +116,7 @@ router.route("/get/:id").get(async (req,res)=>{
 
 router.route("/:id").get((req, res) => {
     feeDet.findById(req.params.id)
-    .then( PaymentDetails=> res.json(PaymentDetails))
+    .then( FeeDetails=> res.json(FeeDetails))
     .catch(err => res.status(400).json('Error: ' + err)); 
   })
 

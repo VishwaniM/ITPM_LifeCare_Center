@@ -54,9 +54,9 @@ class Header extends Component {
                <li><a class="nav-link scrollto" href="doctors">Doctors</a></li>
                <li><a class="nav-link scrollto" href="doctorsdetails">Doctors View</a></li>
                <li><a class="nav-link scrollto" href="pharmacy">Pharmacy</a></li>
-               <li><a class="nav-link scrollto" href="patients">Patients</a></li>
+               <li><a class="nav-link scrollto" href="patients">Payment</a></li>
                
-               <li><a class="nav-link scrollto" href="/addPaymentDetails">Payment</a></li>
+               <li><a class="nav-link scrollto" href="/addTFeeDetails">Patient</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>

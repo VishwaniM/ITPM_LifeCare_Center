@@ -9,24 +9,24 @@ import 'jspdf-autotable';
 import swal from "sweetalert2";
 
 
-const generatePDF = PaymentDetails=> {
+const generatePDF = feeDetails=> {
 
     const doc = new jsPDF();
-    const tableColumn = ["PaymentID", "Patient name", "Phone no","Email","Doctor","Gender","PaymentDate","PaymentType","Amount"];
+    const tableColumn = ["PaymentID", "Patient name", "Phone no","Email","Province","Gender","Birthday","Blood Type","Patient History"];
     const tableRows = [];
    
 
-    PaymentDetails.map(Fee => {
+    feeDetails.map(Fee => {
         const FeeData = [
             Fee.PaymentID,
             Fee.Patientname,
             Fee.Phoneno,
             Fee.Email,
-            Fee.Doctor,
+            Fee.Province,
             Fee.Sex,
-            Fee.PaymentDate,
-            Fee.PaymentType,
-            Fee.Amount,
+            Fee.Birthday,
+            Fee.BloodType,
+            Fee.Phistory,
           
              
         ];
@@ -37,67 +37,67 @@ const generatePDF = PaymentDetails=> {
     doc.save("Fee Details Report.pdf");
 };
 
-const PaymentDetails = props =>(
+const PaymentFeeDetail = props =>(
     <tr>
-        <td>{props.PaymentDetails.PaymentID}</td>
-        <td>{props.PaymentDetails.Patientname}</td>
-        <td>{props.PaymentDetails.Phoneno}</td>
-        <td>{props.PaymentDetails.Email}</td>
-        <td>{props.PaymentDetails.Doctor}</td>
-        <td>{props.PaymentDetails.Sex}</td>
-        <td>{props.PaymentDetails.PaymentDate}</td>
-        <td>{props.PaymentDetails.PaymentType}</td>
-        <td>{props.PaymentDetails.Amount}</td>
+        <td>{props.feeDetails.PaymentID}</td>
+        <td>{props.feeDetails.Patientname}</td>
+        <td>{props.feeDetails.Phoneno}</td>
+        <td>{props.feeDetails.Email}</td>
+        <td>{props.feeDetails.Province}</td>
+        <td>{props.feeDetails.Sex}</td>
+        <td>{props.feeDetails.Birthday}</td>
+        <td>{props.feeDetails.BloodType}</td>
+        <td>{props.feeDetails.Phistory}</td>
        
         
      
         {/*<td >
 
-        <Link to ={"/updateTuitionFee/"+props.PaymentDetails._id}>Edit details</Link> | <a href="#" onClick={() => { props.DeleteTuitionFee(props.PaymentDetails._id)}}>Delete</a></td>
+        <Link to ={"/updatePaymentFee/"+props.feeDetails._id}>Edit details</Link> | <a href="#" onClick={() => { props.DeletePaymentFee(props.feeDetails._id)}}>Delete</a></td>
         */}
       <td>
-             <a className="btn btn-warning" href={`/updateTuitionFee/${props.PaymentDetails._id}`}>
+             <a className="btn btn-warning" href={`/updatePaymentFee/${props.feeDetails._id}`}>
                  <i className="fas fa-edit"></i>&nbsp;Edit
             </a>
              &nbsp;
-           <a className="btn btn-danger" href="#" onClick={()=>{ props.DeleteTuitionFee(props.PaymentDetails._id) }}>
+           <a className="btn btn-danger" href="#" onClick={()=>{ props.DeletePaymentFee(props.feeDetails._id) }}>
                  <i className="far fa-trash-alt"></i>&nbsp;Delete
             </a>
       </td>
       </tr>
 )
 
-export default class DisplayPayment extends Component{
+export default class DisplayPayFee extends Component{
     constructor(props){
         super(props);
 
-        this.DeleteTuitionFee = this.DeleteTuitionFee.bind(this);
-        this.state = {PaymentDetails: []}
+        this.DeletePaymentFee = this.DeletePaymentFee.bind(this);
+        this.state = {feeDetails: []}
     }
 
     componentDidMount(){
-        axios.get('http://localhost:8070/PaymentDetails/')
+        axios.get('http://localhost:8070/feeDetails/')
         .then(response => {
-            this.setState({PaymentDetails: response.data})
+            this.setState({feeDetails: response.data})
         })
         .catch((error) =>{
          console.log(error);
         })
     }
 
-    DeleteTuitionFee(id){
-        axios.delete('http://localhost:8070/PaymentDetails/delete/'+id)
+    DeletePaymentFee(id){
+        axios.delete('http://localhost:8070/feeDetails/delete/'+id)
         .then(res => console.log(res.data));
-        swal.fire("Deleted","Appointment deleted successfully!","success")
+        swal.fire("Deleted","Patient deleted successfully!","success")
         this.setState({
-            PaymentDetails: this.state.PaymentDetails.filter(el => el._id !== id)
+            feeDetails: this.state.feeDetails.filter(el => el._id !== id)
         })
     }
 
     //search
-    filterData(PaymentDetails,searchKey){
+    filterData(feeDetails,searchKey){
 
-        const result = PaymentDetails.filter((Fee)=>
+        const result = feeDetails.filter((Fee)=>
 
         Fee.PaymentID.toLowerCase().includes(searchKey)||
         Fee.Patientname.toLowerCase().includes(searchKey)||
@@ -106,23 +106,23 @@ export default class DisplayPayment extends Component{
        
         )
 
-        this.setState({PaymentDetails:result})
+        this.setState({feeDetails:result})
 
     }
 
     handleSearchArea = (e) =>{
           const searchKey = e.currentTarget.value;
-          axios.get('http://localhost:8070/PaymentDetails/').then(res =>{
+          axios.get('http://localhost:8070/feeDetails/').then(res =>{
 
             this.filterData(res.data,searchKey)
         })
 
       }
 
-    CurrentTuitionFeeTable(){
-        return this.state.PaymentDetails.map(currentexercise => {
+    CurrentPaymentFeeTable(){
+        return this.state.feeDetails.map(currentexercise => {
 
-            return <PaymentDetails PaymentDetails={currentexercise} DeleteTuitionFee={this.DeleteTuitionFee} key={currentexercise._id}/>
+            return <PaymentFeeDetail feeDetails={currentexercise} DeletePaymentFee={this.DeletePaymentFee} key={currentexercise._id}/>
 
         })
 
@@ -154,22 +154,22 @@ export default class DisplayPayment extends Component{
                        <th>Patient name</th>
                        <th>Phone no</th>
                        <th>Email</th>
-                       <th>Doctor</th>
+                       <th>Province</th>
                        <th>Gender</th>
-                       <th>Payment Date</th>
-                       <th>Payment Type</th>
-                       <th>Amount</th>
+                       <th>Birthday</th>
+                       <th>Blood Type</th>
+                       <th>Patient history</th>
                       
 
                        </tr>
                        </thead>
                        <tbody>
-                           {this.CurrentTuitionFeeTable()  }
+                           {this.CurrentPaymentFeeTable()  }
                        </tbody>
                </table>
            </div>
            <div className="button" className="mb-2 mr-8 ml-2 float-right ..."> 
-         <button type ="button" class = "btn btn-secondary btn-sm" onClick={()=> generatePDF(this.state.PaymentDetails)}>Generate Report</button>
+         <button type ="button" class = "btn btn-secondary btn-sm" onClick={()=> generatePDF(this.state.feeDetails)}>Generate Report</button>
         </div>
            </div>
            </div>

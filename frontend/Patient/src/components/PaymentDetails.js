@@ -1,28 +1,28 @@
 /*import React,{useState} from 'react'
 import axios from "axios";
 
-export default function AddPayDetails(){
+export default function AddFeeDetails(){
 
     const [TeacherId,setTeacherId]=useState("");
     const [Patientname,setPatientname]=useState("");
     const [subjectId,setSubjectId]=useState("");
     const [subjectName,setSubjectName]=useState("");
-    const [Amount,setAmount]=useState("");
+    const [Phistory,setPhistory]=useState("");
 
     function sendData(e){
         //preventDefault() is used to stop doing the allocated task in submit
         e.preventDefault();
         
-        const newPayDetails ={
+        const newFeeDetails ={
             TeacherId,
             Patientname,
             Phoneno,
             subjectName,
-            Amount,
+            Phistory,
         }
-        //console.log(newPayDetails)
+        //console.log(newFeeDetails)
         //adding data
-        axios.post("http://localhost:8070/PayDetails/add",newPayDetails).then(()=>{
+        axios.post("http://localhost:8070/feeDetails/add",newFeeDetails).then(()=>{
             alert("Fee details added")
         }).catch((err)=>{
             alert(err);
@@ -69,10 +69,10 @@ export default function AddPayDetails(){
                 
             </div>
             <div class="form-group">
-                <label for="Amount" class="form-label">Amount</label>
-                <input type="text" class="form-control" id="Amount" placeholder="Enter amount"
+                <label for="Phistory" class="form-label">Phistory</label>
+                <input type="text" class="form-control" id="Phistory" placeholder="Enter Phistory"
                 onChange={(e)=>{
-                    setAmount(e.target.value);
+                    setPhistory(e.target.value);
                 }}></input>
                 
             </div>
@@ -109,31 +109,31 @@ export default class PaymentDetails extends Component{
     constructor(props) {
         super(props);
 
-        //this.onChangePaymentID = this.onChangePaymentID.bind(this);
+        //this.onChangePatientID = this.onChangePatientID.bind(this);
         //this.onChangePatientname = this.onChangePatientname.bind(this);
         //this.onChangePhoneno = this.onChangePhoneno.bind(this);
         //this.onChangeEmail = this.onChangeEmail.bind(this);
-        //this.onChangeAmount = this.onChangeAmount.bind(this);
+        //this.onChangePhistory = this.onChangePhistory.bind(this);
         //this.onSubmit = this.onSubmit.bind(this);
         
 
         this.state = {
-            PaymentID: '',
+            PatientID: '',
             Patientname: '',
             Phoneno:'',
             Email:'',
             
 
-            Doctor:'',
+            Province:'',
             Sex:'',
-            PaymentDate:'',
-            PaymentType:'',
-            Amount:'',
+            Birthday:'',
+            BloodType:'',
+            Phistory:'',
 
            
 
-            PaymentDetails: [],
-            PaymentIDError:'',
+            feeDetails: [],
+            PatientIDError:'',
             PatientnameError:'',
             PhonenoError:'',
             EmailError:''
@@ -145,7 +145,7 @@ export default class PaymentDetails extends Component{
     //componentDitMount called automatically called right before anything display on the page
     componentDidMount(){
         this.setState({
-            PaymentDetails:['test user'],
+            feeDetails:['test user'],
             name : 'test user'
         })
     }
@@ -153,9 +153,9 @@ export default class PaymentDetails extends Component{
         console.log(this.state);
     }
     
-    onChangePaymentID=(e)=>{
+    onChangePatientID=(e)=>{
         this.setState({
-            PaymentID: e.target.value
+            PatientID: e.target.value
         });
     }
     onChangePatientname=(e)=>{
@@ -175,13 +175,32 @@ export default class PaymentDetails extends Component{
     } 
 
 
-    onChangeDoctor=(e)=>{
+    onChangeProvince=(e)=>{
         this.setState({
-            Doctor: e.target.value
+            Province: e.target.value
         });
     } 
 
-
+    onChangeSex=(e)=>{
+        this.setState({
+            Sex: e.target.value
+        });
+    } 
+    onChangeBirthday=(e)=>{
+        this.setState({
+            Birthday: e.target.value
+        });
+    } 
+    onChangeBloodType=(e)=>{
+        this.setState({
+            BloodType: e.target.value
+        });
+    } 
+    onChangePhistory=(e)=>{
+        this.setState({
+            Phistory: e.target.value
+        });
+    } 
 
 
     
@@ -190,14 +209,14 @@ export default class PaymentDetails extends Component{
     //validation part
     validate=(values)=>{
      
-        let PaymentIDError='';
+        let PatientIDError='';
         let PatientnameError='';
         let PhonenoError='';
         let EmailError='';
         
 
-        if(!this.state.PaymentID){
-            PaymentIDError="Patient ID cannot be empty";
+        if(!this.state.PatientID){
+            PatientIDError="Patient ID cannot be empty";
         }
         if(!this.state.Patientname){
             PatientnameError="Patient name cannot be empty";
@@ -215,8 +234,8 @@ export default class PaymentDetails extends Component{
         }
        
 
-        if(PaymentIDError || PatientnameError || PhonenoError || EmailError ){
-            this.setState({PaymentIDError,PatientnameError,PhonenoError,EmailError});
+        if(PatientIDError || PatientnameError || PhonenoError || EmailError ){
+            this.setState({PatientIDError,PatientnameError,PhonenoError,EmailError});
             
 
             return false;
@@ -233,17 +252,17 @@ export default class PaymentDetails extends Component{
         e.preventDefault();
 
         //changed barrow to some name
-        const PaymentDetails ={
-            PaymentID:this.state.PaymentID,
+        const feeDetails ={
+            PatientID:this.state.PatientID,
             Patientname:this.state.Patientname,
             Phoneno:this.state.Phoneno,
             Email:this.state.Email,
 
-            Doctor:this.state.Doctor,
+            Province:this.state.Province,
             Sex:this.state.Sex,
-            PaymentDate:this.state.PaymentDate,
-            PaymentType:this.state.PaymentType,
-            Amount:this.state.Amount,
+            Birthday:this.state.Birthday,
+            BloodType:this.state.BloodType,
+            Phistory:this.state.Phistory,
 
            
         }
@@ -251,20 +270,20 @@ export default class PaymentDetails extends Component{
         const isValid = this.validate()
 
         if(isValid){
-        axios.post('http://localhost:8070/PaymentDetails/add',PaymentDetails)
-        swal.fire("Inserted","Payment added successfully!","success")
+        axios.post('http://localhost:8070/feeDetails/add',feeDetails)
+        swal.fire("Inserted","Patient added successfully!","success")
         .then(()=>{
             //alert("New Fee Details Added");
             this.setState({
-                PaymentID:"",
+                PatientID:"",
                 Patientname:"",
                 Phoneno:"",
                 Email:"",
-                Doctor:"",
+                Province:"",
                 Sex:"",
-                PaymentDate:"",
-                PaymentType:"",
-                Amount:"",
+                Birthday:"",
+                BloodType:"",
+                Phistory:"",
              
             })
         }).catch((err)=>{
@@ -276,10 +295,10 @@ export default class PaymentDetails extends Component{
 btnDemo = (e) => {
     e.preventDefault();
   
-    const {PaymentID,Patientname,Phoneno,Email } = this.state;
+    const {PatientID,Patientname,Phoneno,Email } = this.state;
   
     const data = {
-        PaymentID:PaymentID,
+        PatientID:PatientID,
         Patientname:Patientname,
         Phoneno:Phoneno,
         Email:Email,
@@ -290,7 +309,7 @@ btnDemo = (e) => {
   
     this.setState(
         {
-            PaymentID:"tv980",
+            PatientID:"tv980",
             Patientname:"Paba",
             Phoneno:"sub456",
             Email:"A/L History",
@@ -308,16 +327,16 @@ btnDemo = (e) => {
 
 
             <div className="m-8 ..."style={{backgroundColor:"rgb(200,200,200,0.5)", padding:"20px 50px 20px 50px", marginTop:"50px",marginBottom:"50px", borderRadius:"30px"}}>
-               <h3><center><b>Make Payment </b></center></h3>
+               <h3><center><b>Manage Patient </b></center></h3>
                 
             <form onSubmit={this.onSubmit}>
             <div class="form-group">
-                <label for="PaymentID" class="form-label">Payment ID</label>
-                <input type="text" class="form-control"  id="PaymentID" placeholder="Enter PaymentID"
-                value={this.state.PaymentID}
-                onChange={this.onChangePaymentID}></input>
+                <label for="PatientID" class="form-label">Patient ID</label>
+                <input type="text" class="form-control"  id="PatientID" placeholder="Enter PatientID"
+                value={this.state.PatientID}
+                onChange={this.onChangePatientID}></input>
                 <div style={{color:"red"}}>
-                    {this.state.PaymentIDError}
+                    {this.state.PatientIDError}
                 </div>   
                 
             </div>
@@ -362,14 +381,14 @@ btnDemo = (e) => {
 
 
             <div class="form-group">
-                <label for="doctor">Select Doctor :</label><br/>
+                <label for="Province">Province :</label><br/>
                     
                     <select   className="m-9 ..."style={{ padding:"10px 785px", marginTop:"1px",display: "inline-block", 
-                    border: "2px solid #00888e", borderRadius:"10px", boxSizing:"border-box"}}    value={this.state.doctor} onChange={this.onChangeDoctor}>
-                         <option value="Dr.Nimal">Dr.nimal</option>
-                         <option value="Dr.Sunil">Dr.Sunil</option>
-                         <option value="Dr.Lakshitha">Dr.Lakshitha</option>
-                        <option value="Dr.pathum">Dr.Pathum</option>
+                    border: "2px solid #00888e", borderRadius:"10px", boxSizing:"border-box"}}    value={this.state.Province} onChange={this.onChangeProvince}>
+                         <option value="Western">Western</option>
+                         <option value="Eastern">Eastern</option>
+                         <option value="Central">Central</option>
+                        <option value="Southern">Southern</option>
                     </select>
 
             </div> <br/>
@@ -390,11 +409,11 @@ btnDemo = (e) => {
 
             <div class="form-group">
                 
-                 <label for="PaymentDate">Payment Date:</label>  <br/>
-                        <input type="date" id="PaymentDate" name="PaymentDate"     
+                 <label for="Birthday">Birthday:</label>  <br/>
+                        <input type="date" id="Birthday" name="Birthday"     
                          className="m-9 ..."style={{ padding:"10px 788px", marginTop:"1px",display: "inline-block", 
                          border: "2px solid #00888e", borderRadius:"10px", boxSizing:"border-box"}}
-                        onChange={ (e) => this.setState({ PaymentDate : e.target.value } )  } />
+                        onChange={ (e) => this.setState({ Birthday : e.target.value } )  } />
                         
             </div> <br/>
 
@@ -402,15 +421,15 @@ btnDemo = (e) => {
    
 
             <div class="form-group">
-                <label for="PaymentType">Payment Type :</label> <br/>
+                <label for="BloodType">Blood Type :</label> <br/>
 
                     <select  className="m-9 ..."style={{ padding:"10px 790px", marginTop:"1px",display: "inline-block", 
-                    border: "2px solid #00888e", borderRadius:"10px", boxSizing:"border-box"}}     onChange={ (e) => this.setState({ PaymentType : e.target.value } )  }>
+                    border: "2px solid #00888e", borderRadius:"10px", boxSizing:"border-box"}}     onChange={ (e) => this.setState({ BloodType : e.target.value } )  }>
 
-                         <option value="EZ-CASH">EZ Cash</option>
-                         <option value="M-CASH">M Cash</option>
-                         <option value="VISA-CARD">Visa Card</option>
-                         <option value="CASH">Cash</option>
+                         <option value="A-">A-</option>
+                         <option value="A+">A+</option>
+                         <option value="B-">B-</option>
+                         <option value="B+">B+</option>
                     </select>
 
             </div> <br/>
@@ -418,9 +437,9 @@ btnDemo = (e) => {
 
 
             <div class="form-group">
-                <label for="Amount" class="form-label">Amount</label>
-                <input type="text" class="form-control" id="Amount" placeholder="Enter Amount"
-               onChange={ (e) => this.setState({ Amount : e.target.value } )  }
+                <label for="Phistory" class="form-label">Patient history</label>
+                <input type="text" class="form-control" id="Phistory" placeholder="Enter Patient History"
+               onChange={ (e) => this.setState({ Phistory : e.target.value } )  }
                ></input>
                
                 
@@ -433,7 +452,7 @@ btnDemo = (e) => {
             <center><button type="submit" class="btn btn-primary">Submit</button></center>
             <div className="float-right ...">
             <td >
-                <Link to ={"/listTPaymentDetails"}>View Details</Link></td>
+                <Link to ={"/listTFeeDetails"}>View Details</Link></td>
             </div>
             <button className="btn btn-warning" type="submit" style={{ marginTop: '15px', marginLeft:'5px' }} onClick={this.btnDemo}>
                                     <i className="far far-check-square"></i>

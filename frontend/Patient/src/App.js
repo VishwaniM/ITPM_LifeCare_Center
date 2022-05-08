@@ -3,8 +3,9 @@ import './App.css';
 import Header from './components/Header';
 import PaymentDetails from "./components/PaymentDetails"
 import {BrowserRouter as Router,Route} from "react-router-dom"
-import DisplayPayment from "./components/DisplayPayment"
-import UpdatePayment from "./components/UpdatePayment"
+import DisplayPayFee from "./components/DisplayPayFee"
+import updatePaymentFee from "./components/updatePaymentFee"
+
 import HeaderComp from './components/HeaderComponent copy';
 import FooterComp from "./components/FooterComponent copy";
 
@@ -15,10 +16,10 @@ function App() {
       <div>
         <HeaderComp/>
         <Header/>
-        <Route path="/addPaymentDetails" exact component={PaymentDetails}/>
-        <Route path="/listTPaymentDetails" exact component={DisplayPayment}/>
-        <Route path="/updateTuitionFee/:id" exact component={UpdatePayment}/>
-      
+        <Route path="/addTFeeDetails" exact component={PaymentDetails}/>
+        <Route path="/listTFeeDetails" exact component={DisplayPayFee}/>
+        <Route path="/updatePaymentFee/:id" exact component={updatePaymentFee}/>
+        
         <FooterComp/>
 
 

@@ -4,42 +4,42 @@ import swal from "sweetalert2";
 
 
 
-export default class EditPaymentDetails extends Component{
+export default class EditPaymentFeeDetail extends Component{
     constructor(props) {
         super(props);
          
         this.state = {
-            PaymentID: '',
+            PatientID: '',
             Patientname: '',
             Phoneno:'',
             Email:'',
-            Doctor:'',
+            Province:'',
             Sex:'',
-            PaymentDate:'',
-            PaymentType:'',
+            Birthday:'',
+            BloodType:'',
          
-            Amount:'',
-            PaymentDetailss: [] 
+            Phistory:'',
+            FeeDetails: [] 
 
         }
     
     }
 
     componentDidMount(){
-        axios.get('http://localhost:8070/PaymentDetailss/'+this.props.match.params.id)
+        axios.get('http://localhost:8070/feeDetails/'+this.props.match.params.id)
         .then(response => {
             this.setState({
             
             
-                PaymentID: response.data.PaymentID,
+                PatientID: response.data.PatientID,
                 Patientname: response.data.Patientname,
                 Phoneno:response.data.Phoneno,
                 Email:response.data.Email,
-                Doctor:response.data.Doctor,
+                Province:response.data.Province,
                 Sex:response.data.Sex,
-                PaymentDate:response.data.PaymentDate,
-                PaymentType:response.data.PaymentType,
-                Amount:response.data.Amount,
+                Birthday:response.data.Birthday,
+                BloodType:response.data.BloodType,
+                Phistory:response.data.Phistory,
               
                 
                })
@@ -49,9 +49,9 @@ export default class EditPaymentDetails extends Component{
         })
     }
     
-    onChangePaymentID=(e)=>{
+    onChangePatientID=(e)=>{
         this.setState({
-            PaymentID : e.target.value
+            PatientID : e.target.value
         });
     }
     onChangePatientname=(e)=>{
@@ -71,9 +71,9 @@ export default class EditPaymentDetails extends Component{
         });
     }
 
-    onChangeDoctor=(e)=>{
+    onChangeProvince=(e)=>{
         this.setState({
-            Doctor : e.target.value
+            Province : e.target.value
         });
     }
 
@@ -83,21 +83,21 @@ export default class EditPaymentDetails extends Component{
         });
     }
 
-    onChangePaymentDate=(e)=>{
+    onChangeBirthday=(e)=>{
         this.setState({
-            PaymentDate : e.target.value
+            Birthday : e.target.value
         });
     }
 
-    onChangePaymentType=(e)=>{
+    onChangeBloodType=(e)=>{
         this.setState({
-            PaymentType : e.target.value
+            BloodType : e.target.value
         });
     }
 
-    onChangeAmount=(e)=>{
+    onChangePhistory=(e)=>{
         this.setState({
-            Amount : e.target.value
+            Phistory : e.target.value
         });
     }
 
@@ -106,29 +106,29 @@ export default class EditPaymentDetails extends Component{
     
     onSubmit=(e)=>{
         e.preventDefault();
-        const PaymentDetailss ={
+        const FeeDetails ={
 
-            PaymentID: this.state.PaymentID,
+            PatientID: this.state.PatientID,
             Patientname: this.state.Patientname,
             Phoneno:this.state.Phoneno,
             Email:this.state.Email,
-            Doctor:this.state.Doctor,
+            Province:this.state.Province,
             Sex:this.state.Sex,
-            PaymentDate:this.state.PaymentDate,
-            PaymentType:this.state.PaymentType,
-            Amount:this.state.Amount,
+            Birthday:this.state.Birthday,
+            BloodType:this.state.BloodType,
+            Phistory:this.state.Phistory,
            
             
         }
 
     
-       console.log(PaymentDetailss);
+       console.log(FeeDetails);
 
-       axios.put('http://localhost:8070/PaymentDetailss/update/'+this.props.match.params.id ,PaymentDetailss)
+       axios.put('http://localhost:8070/feeDetails/update/'+this.props.match.params.id ,FeeDetails)
        .then(res => console.log(res.data));
         
-       swal.fire("Updated","Appointment updated successfully!","success")
-       window.location='/listTPaymentDetailss'; 
+       swal.fire("Updated","Patient updated successfully!","success")
+       window.location='/listTFeeDetails'; 
         
     }
 
@@ -139,17 +139,17 @@ export default class EditPaymentDetails extends Component{
         return(
             <div className="container">
             <div>
-                <h3>Edit PaymentDetailss</h3>
+                <h3>Edit Patient Details</h3>
                 <form onSubmit={this.onSubmit}>
 
                     <div className="form-grouo">
                          
-                         <label>Teacher ID</label> 
+                         <label>Patient ID</label> 
                          <input 
                             type="text"
                             className="form-control"
-                            value={this.state.PaymentID}
-                            onChange={this.onChangePaymentID}
+                            value={this.state.PatientID}
+                            onChange={this.onChangePatientID}
                             />      
                         
                     </div> 
@@ -189,12 +189,12 @@ export default class EditPaymentDetails extends Component{
 
                     <div className="form-grouo">
                          
-                         <label>Doctor</label> 
+                         <label>Province</label> 
                          <input 
                             type="text"
                             className="form-control"
-                            value={this.state.Doctor}
-                            onChange={this.onChangeDoctor}
+                            value={this.state.Province}
+                            onChange={this.onChangeProvince}
                             />      
                         
                     </div>
@@ -213,12 +213,12 @@ export default class EditPaymentDetails extends Component{
 
                     <div className="form-grouo">
                          
-                         <label>Payment Date</label> 
+                         <label>Birthday</label> 
                          <input 
                             type="text"
                             className="form-control"
-                            value={this.state.PaymentDate}
-                            onChange={this.onChangePaymentDate}
+                            value={this.state.Birthday}
+                            onChange={this.onChangeBirthday}
                             />      
                         
                     </div>
@@ -226,24 +226,24 @@ export default class EditPaymentDetails extends Component{
 
                     <div className="form-grouo">
                          
-                         <label>PaymentType</label> 
+                         <label>BloodType</label> 
                          <input 
                             type="text"
                             className="form-control"
-                            value={this.state.PaymentType}
-                            onChange={this.onChangePaymentType}
+                            value={this.state.BloodType}
+                            onChange={this.onChangeBloodType}
                             />      
                         
                     </div>
 
                     <div className="form-grouo">
                          
-                         <label>Amount</label> 
+                         <label>Patient History</label> 
                          <input 
                             type="text"
                             className="form-control"
-                            value={this.state.Amount}
-                            onChange={this.onChangeAmount}
+                            value={this.state.Phistory}
+                            onChange={this.onChangePhistory}
                             />      
                         
                     </div>
@@ -255,7 +255,7 @@ export default class EditPaymentDetails extends Component{
                     
                     <br/>
                     <div className="form-group" align="center">
-                            <input type="submit" value="Edit PaymentDetailss" className="btn btn-primary"/>
+                            <input type="submit" value="Edit FeeDetails" className="btn btn-primary"/>
                     </div>
                      
                 </form> 

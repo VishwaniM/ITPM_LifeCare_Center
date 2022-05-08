@@ -26,10 +26,10 @@ const connection=mongoose.connection;
 connection.once("open", ()=>{
     console.log("mongo DB Connection success");
 })
-//PaymentDetails
-const PaymentDetails=require("./routes/PaymentDetails.js");
+//feeDetails
+const feeDetails=require("./routes/FeeDetails.js");
 
-app.use("/PayDetails",PaymentDetails);
+app.use("/feeDetails",feeDetails);
 
 
 

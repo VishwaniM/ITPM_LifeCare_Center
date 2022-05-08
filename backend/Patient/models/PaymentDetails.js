@@ -2,9 +2,9 @@ const mongoose=require('mongoose');
 
 const Schema=mongoose.Schema;
 
-const PayDetailsSchema=new Schema({
+const FeeDetailsSchema=new Schema({
     
-    PaymentID: {
+    PatientID: {
         type: String,
         required:true
     },
@@ -21,7 +21,7 @@ const PayDetailsSchema=new Schema({
 
     },
 
-    Doctor:{
+    Province:{
         type: String,
 
     },
@@ -36,12 +36,12 @@ const PayDetailsSchema=new Schema({
 
     },
 
-    PaymentType:{
+    BloodType:{
         type: String,
 
     },
 
-    Amount:{
+    Phistory:{
         type: String,
 
     }
@@ -51,7 +51,7 @@ const PayDetailsSchema=new Schema({
 })
 
 //parameters are tableName,schema name
-const PaymentDetails=mongoose.model("PaymentDetail", PayDetailsSchema);
+const PaymentDetails=mongoose.model("FeeDetail", FeeDetailsSchema);
 
 // export
 module.exports=PaymentDetails;
