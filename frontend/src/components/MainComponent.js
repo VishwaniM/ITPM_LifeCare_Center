@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import Home from "./HomeComponent";
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
-import DocterCom from "./DocterCom";
-import PharmacyComponent from "./Pharmacy/PharmacyComponent";
+import DoctorCom from "../components/DoctorComponent/DoctorCom";
+import DoctorView from "./DoctorComponent/DoctorView";
+import Appointments from './Appointments/AppointmentsComponent';
+import Patients from './Patients/PatientsComponent';
+import Pharmacy from './Pharmacy/PharmacyComponent';
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 
@@ -24,12 +27,17 @@ class Main extends Component {
 
           <Route path="/home" component={HomePage} /> 
 
-          <Route path="/doctors" exact component={() => <Redirect to="/doctors"/>}><DocterCom /></Route>
-          <Route path="/pharmacy" exact component={() => <Redirect to="/pharmacy"/>}><PharmacyComponent /></Route>  
+          <Route path="/doctors/search" exact component = {DoctorCom}/>
+          <Route path="/doctorsdetails/search" exact component = {DoctorView}/>
+          <Route path="/doctors" exact component={() => <Redirect to="/doctors"/>}><DoctorCom/></Route>
+          <Route path="/doctorsdetails" exact component={() => <Redirect to="/doctorsdetails"/>}><DoctorView/></Route>  
+          <Route path="/appointments" exact component={() => <Redirect to="/appointments"/>}><Appointments/></Route> 
+          <Route path="/patients" exact component={() => <Redirect to="/patients"/>}><Patients/></Route> 
+          <Route path="/pharmacy" exact component={() => <Redirect to="/pharmacy"/>}><Pharmacy/></Route>
           
           <Redirect to="/home" />
         </Switch>
-        <Footer />
+        <Footer/>
         </BrowserRouter>
       </div>
     );
