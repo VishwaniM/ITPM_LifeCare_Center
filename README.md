@@ -23,4 +23,4 @@ All these modules can help to manage medical center more convenience and more ef
 
 Technologies used - MongoDB, Express JS, React JS, Node JS
 
-Project Report -
+Project Report - https://drive.google.com/file/d/1f_HRhpMCxxMEyBgAc9RwSDCGyvRcf_YQ/view?usp=share_link
